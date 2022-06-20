@@ -26,6 +26,15 @@ const TodoInputStyle = styled.input`
   }
 `;
 
+const EditInputStyle = styled.input`
+  background: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+  padding: 16px 22px;
+`;
+
 const TodoButtonStyle = styled.button`
   padding: 16px;
   border: none;
@@ -59,18 +68,36 @@ function TodoForm(props) {
 
     setInput("");
   };
-
-  return (
-    <TodoFormStyle onSubmit={handleSubmit}>
-      <TodoInputStyle
-        type="text"
-        placeholder="Add a todo"
-        value={input}
-        name="text"
-        onChange={handleChange}
-      />
-      <TodoButtonStyle>Add todo</TodoButtonStyle>
-    </TodoFormStyle>
-  );
+  let todoInput;
+  console.log(props.isEdit);
+  if (props.isEdit) {
+    todoInput = (
+      <React.Fragment>
+        <EditInputStyle
+          type="text"
+          placeholder="Edit todo"
+          value={input}
+          name="text"
+          onChange={handleChange}
+        />
+        <TodoButtonStyle>Edit todo</TodoButtonStyle>
+      </React.Fragment>
+    );
+  } else {
+    todoInput = (
+      <React.Fragment>
+        <TodoInputStyle
+          type="text"
+          placeholder="Add a todo"
+          value={input}
+          name="text"
+          onChange={handleChange}
+        />
+        <TodoButtonStyle>Add todo</TodoButtonStyle>
+      </React.Fragment>
+    );
+  }
+  return <TodoFormStyle onSubmit={handleSubmit}>{todoInput}</TodoFormStyle>;
 }
+
 export default TodoForm;
