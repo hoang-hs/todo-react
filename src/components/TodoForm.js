@@ -13,26 +13,9 @@ const TodoInputStyle = styled.input`
   width: 320px;
   background: transparent;
   color: #fff;
-  /* edit: {
-    background: linear-gradient(
-      90deg,
-      rgba(20, 159, 255, 1) 0%,
-      rgba(17, 122, 255, 1) 100%
-    );
-    padding: 16px 22px;
-  } */
-  placeholder {
+  ::placeholder {
     color: #e2e2e2;
   }
-`;
-
-const EditInputStyle = styled.input`
-  background: linear-gradient(
-    90deg,
-    rgba(20, 159, 255, 1) 0%,
-    rgba(17, 122, 255, 1) 100%
-  );
-  padding: 16px 22px;
 `;
 
 const TodoButtonStyle = styled.button`
@@ -73,14 +56,14 @@ function TodoForm(props) {
   if (props.isEdit) {
     todoInput = (
       <React.Fragment>
-        <EditInputStyle
+        <TodoInputStyle
           type="text"
           placeholder="Edit todo"
           value={input}
           name="text"
           onChange={handleChange}
         />
-        <TodoButtonStyle>Edit todo</TodoButtonStyle>
+        <TodoButtonStyle>Edit</TodoButtonStyle>
       </React.Fragment>
     );
   } else {
